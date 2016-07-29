@@ -3,7 +3,7 @@ from time import sleep
 from resource_management import *
 
 class MariadbMaster(Script):
-    mariadb_packages=['MariaDB-server','MariaDB-client','galera']
+    mariadb_packages=['MariaDB-Galera-server','MariaDB-client','galera']
     
     def install(self, env):
         #delete mysql-server
