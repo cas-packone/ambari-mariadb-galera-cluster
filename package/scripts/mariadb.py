@@ -91,7 +91,7 @@ class MariadbMaster(Script):
         self.start(env)
 
     def status(self, env):
-       Execute('service mysql status')
+        Execute('service mysql status')
     
     def initdb(self,env):
         import params;

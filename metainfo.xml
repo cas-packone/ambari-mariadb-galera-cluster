@@ -9,8 +9,8 @@
       <version>10.0</version>
       <components>
         <component>
-          <name>Mariadb</name>
-          <displayName>Mariadb</displayName>
+          <name>Mariadb_node</name>
+          <displayName>Mariadb Node</displayName>
           <category>MASTER</category>
 		  <cardinality>3+</cardinality>
           <commandScript>
