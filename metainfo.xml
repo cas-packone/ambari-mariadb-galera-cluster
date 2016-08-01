@@ -3,7 +3,7 @@
   <schemaVersion>2.0</schemaVersion>
   <services>
     <service>
-      <name>Mariadb</name>
+      <name>MARIADB</name>
       <displayName>Mariadb</displayName>
       <comment>MariaDB is a relational database management system (RDBMS) and  MariaDB Galera Cluster is a synchronous multi-master cluster for MariaDB. It is available on Linux only, and only supports the XtraDB/InnoDB storage engines.</comment>
       <version>10.0</version>
