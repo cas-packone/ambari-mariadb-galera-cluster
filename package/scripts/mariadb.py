@@ -44,10 +44,9 @@ class MariadbMaster(Script):
             Execute(format('mysql_install_db --user=mysql --ldata={db_dir}'),logoutput=True)
             
         env.set_params(params)
-        File("/etc/my.cnf.d/server.cnf",
-             content=Template("server.cnf.j2"),
-             mode=0644
-            )
+        server_cnf_content = InlineTemplate(params.server_cnf_content)   
+        File(format("/etc/my.cnf.d/server.cnf"), content=server_cnf_content, owner='mysql')
+        
         db_password = params.db_password
         
         file_object = open(self.db_pass_file)

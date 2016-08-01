@@ -14,3 +14,4 @@ service_packagedir = os.path.realpath(__file__).split('/scripts')[0]
 mariadb_hosts = config['clusterHostInfo']['mariadb_node_hosts']
 mariadb_hosts_str = ','.join(mariadb_hosts)
 mariadb_current_host= socket.getfqdn(socket.gethostname())
+server_cnf_content=config['configurations']['mariadb']['content']
