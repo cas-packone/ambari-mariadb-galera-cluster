@@ -43,7 +43,7 @@ class MariadbMaster(Script):
             Execute(format('chown -R mysql:mysql {db_dir}'),logoutput=True)
             Execute(format('mysql_install_db --user=mysql --ldata={db_dir}'),logoutput=True)
             
-        env.set_params(params)       
+        env.set_params(params)
         File("/etc/my.cnf.d/server.cnf",
              content=Template("server.cnf.j2"),
              mode=0644
@@ -56,12 +56,17 @@ class MariadbMaster(Script):
             pre_pass= base64.decodestring(file_content)
             print pre_pass
             if db_password !=pre_pass:
-                Execute('service mysql start')
-                sleep(10)
-                cmd = format("/usr/bin/mysqladmin -u root -p{pre_pass} password '{db_password}'")
-                Execute(cmd)
+                if params.mariadb_current_host == params.mariadb_hosts[0]:
+                   Execute('/etc/init.d/mysql start --wsrep-new-cluster')
+                   cmd = format("/usr/bin/mysqladmin -u root -p{pre_pass} password '{db_password}'")
+                   Execute(cmd)
+                else:
+                    sleep(10)
+                    Execute('service mysql start')
                 self.initdb(env)
-                Execute('service mysql stop')
+                if params.mariadb_current_host == params.mariadb_hosts[0]:
+                   self.stop(env)
+                
         finally:
             file_object.close( )
                 
